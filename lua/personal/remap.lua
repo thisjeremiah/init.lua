@@ -12,11 +12,11 @@ local function toggle_layout()
   if splitbelow and splitright then
     vim.o.splitbelow = false
     vim.o.splitright = false
-    vim.cmd("wincmd K")     -- Convert to horizontal layout
+    vim.cmd("wincmd K") -- Convert to horizontal layout
   else
     vim.o.splitbelow = true
     vim.o.splitright = true
-    vim.cmd("wincmd H")     -- Convert to vertical layout
+    vim.cmd("wincmd H") -- Convert to vertical layout
   end
 end
 vim.keymap.set("n", "<leader>tl", toggle_layout, { desc = "Toggle split layout" })
