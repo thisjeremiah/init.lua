@@ -11,6 +11,18 @@ return {
         require('telescope').setup({})
 
         local builtin = require('telescope.builtin')
+
+        -- Old config FZF-style keymaps (prioritized)
+        vim.keymap.set('n', '<leader>a', builtin.live_grep, { desc = "Search in files (Ag)" })
+        vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = "List buffers" })
+        vim.keymap.set('n', '<leader>o', builtin.find_files, { desc = "Find files" })
+
+        -- Create :Ag command for old workflow
+        vim.api.nvim_create_user_command('Ag', function(opts)
+            builtin.live_grep({ default_text = opts.args })
+        end, { nargs = '*', desc = "Live grep (like :Ag)" })
+
+        -- New config keymaps
         vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
         vim.keymap.set('n', '<C-p>', builtin.git_files, {})
         vim.keymap.set('n', '<leader>pws', function()

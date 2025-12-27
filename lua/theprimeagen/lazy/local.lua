@@ -9,21 +9,21 @@ local local_plugins = {
 	--    end,
 	--},
 
-	{
-		"99",
-		dir = "~/personal/99",
-        config = function()
+	--{
+	--	"99",
+	--	dir = "~/personal/99",
+	--  config = function()
+	--
+	--  end,
+	--},
+	--{
+	--	"the-stru",
+	--	dir = "~/personal/the-stru",
+	--},
 
-        end,
-	},
 	{
-		"the-stru",
-		dir = "~/personal/the-stru",
-	},
-
-	{
-		"harpoon",
-		dir = "~/personal/harpoon",
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
 		config = function()
 			local harpoon = require("harpoon")
 

@@ -1,4 +1,26 @@
 vim.g.mapleader = " "
+
+-- Exit with esc
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true, desc = "Exit insert mode" })
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { noremap = true, desc = "Exit terminal mode" })
+
+-- Toggle split layout
+local function toggle_layout()
+    local splitbelow = vim.o.splitbelow
+    local splitright = vim.o.splitright
+
+    if splitbelow and splitright then
+        vim.o.splitbelow = false
+        vim.o.splitright = false
+        vim.cmd("wincmd K") -- Convert to horizontal layout
+    else
+        vim.o.splitbelow = true
+        vim.o.splitright = true
+        vim.cmd("wincmd H") -- Convert to vertical layout
+    end
+end
+vim.keymap.set("n", "<leader>tl", toggle_layout, { desc = "Toggle split layout" })
+
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
