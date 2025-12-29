@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNewFile" }, {
   desc = "Set filetype for .env files"
 })
 
--- SCSS iskeyword config (for coc-css compatibility)
+-- SCSS iskeyword config
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "scss",
   command = "setl iskeyword+=@-@",

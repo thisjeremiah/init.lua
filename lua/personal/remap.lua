@@ -19,6 +19,7 @@ local function toggle_layout()
     vim.cmd("wincmd H") -- Convert to vertical layout
   end
 end
+
 vim.keymap.set("n", "<leader>tl", toggle_layout, { desc = "Toggle split layout" })
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
