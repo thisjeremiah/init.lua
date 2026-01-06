@@ -61,7 +61,8 @@ nvim lazy-lock.json
 <F10>  # Step over
 <F11>  # Step into
 <F12>  # Step out
-<leader>b  # Toggle breakpoint
+<leader>bp  # Toggle breakpoint
+<leader>bc  # Set conditional breakpoint
 ```
 
 ## Architecture
