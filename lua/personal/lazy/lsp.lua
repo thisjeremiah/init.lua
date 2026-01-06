@@ -12,7 +12,6 @@ local root_files = {
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "stevearc/conform.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -26,29 +25,6 @@ return {
   },
 
   config = function()
-    require("conform").setup({
-      formatters_by_ft = {
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
-        vue = { "prettier" },
-        css = { "prettier" },
-        scss = { "prettier" },
-        less = { "prettier" },
-        html = { "prettier" },
-        json = { "prettier" },
-        jsonc = { "prettier" },
-        yaml = { "prettier" },
-        markdown = { "prettier" },
-        graphql = { "prettier" },
-        handlebars = { "prettier" },
-      },
-      format_on_save = {
-        timeout_ms = 3000,
-        lsp_fallback = true,
-      },
-    })
     local cmp = require('cmp')
     local cmp_lsp = require("cmp_nvim_lsp")
     local capabilities = vim.tbl_deep_extend(
@@ -62,6 +38,7 @@ return {
       ensure_installed = {
         "prettier",
         "black",
+        "ruff",
       },
     })
     require("mason-lspconfig").setup({

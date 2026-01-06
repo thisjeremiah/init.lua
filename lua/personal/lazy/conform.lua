@@ -22,9 +22,22 @@ return {
         lua = { "stylua" },
         go = { "gofmt" },
         javascript = { "prettier" },
+        javascriptreact = { "prettier" },
         typescript = { "prettier" },
+        typescriptreact = { "prettier" },
+        vue = { "prettier" },
+        css = { "prettier" },
+        scss = { "prettier" },
+        less = { "prettier" },
+        html = { "prettier" },
+        json = { "prettier" },
+        jsonc = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        graphql = { "prettier" },
+        handlebars = { "prettier" },
         elixir = { "mix" },
-        python = { "black" },
+        python = { "ruff_fix", "ruff_organize_imports", "black" },
       },
       formatters = {
         ["clang-format"] = {
@@ -33,6 +46,41 @@ return {
         black = {
           timeout_ms = 10000,
           prepend_args = { "--fast" },  -- Use Black's fast mode to speed up formatting
+        },
+        ruff_fix = {
+          command = "ruff",
+          args = {
+            "check",
+            "--fix",
+            "--exit-zero",
+            "--stdin-filename",
+            "$FILENAME",
+            "-",
+          },
+          stdin = true,
+          cwd = require("conform.util").root_file({
+            "pyproject.toml",
+            "ruff.toml",
+            ".ruff.toml",
+          }),
+        },
+        ruff_organize_imports = {
+          command = "ruff",
+          args = {
+            "check",
+            "--select=I",
+            "--fix",
+            "--exit-zero",
+            "--stdin-filename",
+            "$FILENAME",
+            "-",
+          },
+          stdin = true,
+          cwd = require("conform.util").root_file({
+            "pyproject.toml",
+            "ruff.toml",
+            ".ruff.toml",
+          }),
         },
       },
     })
