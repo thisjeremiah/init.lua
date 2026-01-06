@@ -61,6 +61,7 @@ return {
     require("mason-tool-installer").setup({
       ensure_installed = {
         "prettier",
+        "black",
       },
     })
     require("mason-lspconfig").setup({
