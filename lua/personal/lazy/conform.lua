@@ -15,6 +15,7 @@ return {
         javascript = { "prettier" },
         typescript = { "prettier" },
         elixir = { "mix" },
+        python = { "ruff", "ruff_organize_imports", "ruff_format" },
       },
       formatters = {
         ["clang-format"] = {

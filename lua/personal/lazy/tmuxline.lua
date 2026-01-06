@@ -2,7 +2,7 @@ return {
   "edkolev/tmuxline.vim",
   config = function()
     vim.g.tmuxline_powerline_separators = 0
-    vim.g.tmuxline_preset = {
+    vim.g.tmuxline_prese = {
       a = '#S',
       win = '#I #W #{s|$HOME||;s|/.*/||:pane_current_path}',
       cwin = '#I #W #{s|$HOME||;s|/.*/||:pane_current_path}',
