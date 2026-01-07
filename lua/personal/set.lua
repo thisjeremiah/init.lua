@@ -35,6 +35,10 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
+-- Disable horizontal scrolling
+vim.opt.sidescroll = 0
+vim.opt.sidescrolloff = 0
+
 -- Timing
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 1000
