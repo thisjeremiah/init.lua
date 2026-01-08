@@ -29,7 +29,7 @@ nvim -c ":checkhealth"
 :Lazy profile
 
 # Reload a module during development (inside Neovim)
-:lua R("personal.lazy.lsp")  # R() function defined in personal/init.lua
+:lua R("config.lazy.lsp")  # R() function defined in config/init.lua
 
 # View/edit lazy lockfile
 nvim lazy-lock.json
@@ -73,8 +73,8 @@ The configuration uses a namespace-based module system:
 
 ```
 ~/.config/nvim/
-├── init.lua                  # Single line: require("personal")
-└── lua/personal/
+├── init.lua                  # Single line: require("config")
+└── lua/config/
     ├── init.lua             # Core loader (loads all modules in order)
     ├── set.lua              # Vim options (tabs, UI, behavior)
     ├── remap.lua            # Keybindings and leader mappings
@@ -89,7 +89,7 @@ The configuration uses a namespace-based module system:
 
 ### Plugin Management Pattern
 
-Each plugin configuration in `lua/personal/lazy/` returns a table following lazy.nvim's spec format.
+Each plugin configuration in `lua/config/lazy/` returns a table following lazy.nvim's spec format.
 
 Lazy.nvim automatically discovers and loads these files.
 
@@ -110,7 +110,7 @@ return {
 
 ### Key Architectural Decisions
 
-1. **Single-line init.lua**: Delegates everything to the personal module
+1. **Single-line init.lua**: Delegates everything to the config module
 2. **Per-plugin isolation**: Each plugin config in its own file under lazy/
 3. **Lazy loading**: Most plugins load on-demand for fast startup
 4. **Mason integration**: Auto-installs LSP servers, formatters, and debuggers
@@ -149,4 +149,3 @@ return {
 - `.env` files treated as conf filetype
 - SCSS files include `@-@` in iskeyword
 - HTML files skip Treesitter (use regex highlighting instead)
-

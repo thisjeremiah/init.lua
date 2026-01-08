@@ -1,1 +1,1 @@
-require("personal")
+require("config")
