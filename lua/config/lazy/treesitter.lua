@@ -24,7 +24,7 @@ return {
         auto_install = true,
 
         indent = {
-          enable = true,
+          enable = false,
         },
 
         highlight = {
