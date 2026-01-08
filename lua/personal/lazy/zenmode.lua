@@ -1,5 +1,9 @@
 return {
   "folke/zen-mode.nvim",
+  keys = {
+    { "<leader>zz", desc = "Toggle zen mode (90 width)" },
+    { "<leader>zZ", desc = "Toggle zen mode (80 width, no numbers)" },
+  },
   config = function()
     vim.keymap.set("n", "<leader>zz", function()
       require("zen-mode").setup {

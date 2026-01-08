@@ -1,6 +1,12 @@
 return {
   {
     "folke/trouble.nvim",
+    keys = {
+      { "<leader>tt", desc = "Toggle trouble diagnostics" },
+      { "<leader>td", desc = "Toggle trouble buffer diagnostics" },
+      { "[t", desc = "Next trouble item" },
+      { "]t", desc = "Previous trouble item" },
+    },
     config = function()
       require("trouble").setup({
         icons = {

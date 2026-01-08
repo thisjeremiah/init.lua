@@ -34,7 +34,14 @@ end
 return {
   {
     "mfussenegger/nvim-dap",
-    lazy = false,
+    keys = {
+      { "<F8>", desc = "Debug: Continue" },
+      { "<F10>", desc = "Debug: Step Over" },
+      { "<F11>", desc = "Debug: Step Into" },
+      { "<F12>", desc = "Debug: Step Out" },
+      { "<leader>d", desc = "Debug: Toggle Breakpoint" },
+      { "<leader>D", desc = "Debug: Set Conditional Breakpoint" },
+    },
     config = function()
       local dap = require("dap")
       dap.set_log_level("DEBUG")
