@@ -14,7 +14,13 @@ return {
 
     -- Old config FZF-style keymaps (prioritized)
     vim.keymap.set('n', '<leader>a', builtin.live_grep, { desc = "Search in files (Ag)" })
-    vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = "List buffers" })
+    vim.keymap.set('n', '<leader>b', function()
+      builtin.buffers({
+        sort_mru = true,
+        sort_lastused = true,
+        ignore_current_buffer = true
+      })
+    end, { desc = "List buffers (MRU)" })
     vim.keymap.set('n', '<leader>o', builtin.find_files, { desc = "Find files" })
 
     -- Create :Ag command for old workflow
