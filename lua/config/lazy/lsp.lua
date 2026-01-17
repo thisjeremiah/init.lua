@@ -47,12 +47,23 @@ return {
         "rust_analyzer",
         "gopls",
         "tailwindcss",
+        "eslint",  -- ESLint language server
       },
       handlers = {
         function(server_name) -- default handler (optional)
           require("lspconfig")[server_name].setup {
             capabilities = capabilities
           }
+        end,
+
+        ["eslint"] = function()
+          require("lspconfig").eslint.setup({
+            capabilities = capabilities,
+            on_attach = function(client, bufnr)
+              -- Enable ESLint to work as a formatter
+              client.server_capabilities.documentFormattingProvider = true
+            end,
+          })
         end,
 
         zls = function()

@@ -21,6 +21,7 @@ return {
         cpp = { "clang-format" },
         lua = { "stylua" },
         go = { "gofmt" },
+        -- Only use Prettier for JavaScript/TypeScript formatting
         javascript = { "prettier" },
         javascriptreact = { "prettier" },
         typescript = { "prettier" },
