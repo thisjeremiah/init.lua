@@ -11,6 +11,14 @@ return {
         if not vim.g.autoformat_enabled then
           return nil
         end
+
+        -- Check if Copilot suggestions are visible
+        local copilot_ok, copilot = pcall(require, "copilot.suggestion")
+        if copilot_ok and copilot.is_visible() then
+          -- Skip formatting if Copilot is showing suggestions
+          return nil
+        end
+
         return {
           timeout_ms = 10000,
           lsp_format = "fallback",
@@ -21,12 +29,12 @@ return {
         cpp = { "clang-format" },
         lua = { "stylua" },
         go = { "gofmt" },
-        -- Only use Prettier for JavaScript/TypeScript formatting
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
-        vue = { "prettier" },
+        -- Use ESLint for fixing issues, then Prettier for formatting
+        javascript = { "eslint_d", "prettier" },
+        javascriptreact = { "eslint_d", "prettier" },
+        typescript = { "eslint_d", "prettier" },
+        typescriptreact = { "eslint_d", "prettier" },
+        vue = { "eslint_d", "prettier" },
         css = { "prettier" },
         scss = { "prettier" },
         less = { "prettier" },
@@ -43,6 +51,23 @@ return {
       formatters = {
         ["clang-format"] = {
           prepend_args = { "-style=file", "-fallback-style=LLVM" },
+        },
+        eslint_d = {
+          command = "eslint_d",
+          args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
+          stdin = true,
+          cwd = require("conform.util").root_file({
+            ".eslintrc",
+            ".eslintrc.js",
+            ".eslintrc.cjs",
+            ".eslintrc.yaml",
+            ".eslintrc.yml",
+            ".eslintrc.json",
+            "eslint.config.js",
+            "eslint.config.mjs",
+            "eslint.config.cjs",
+          }),
+          require_cwd = true,
         },
         black = {
           timeout_ms = 10000,

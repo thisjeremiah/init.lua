@@ -74,18 +74,3 @@ vim.g.netrw_list_hide = '^\\.DS_Store$'
 vim.g.javascript_plugin_flow = 1
 vim.g.jsx_ext_required = 0
 
--- ESLint autofix on save for JavaScript/TypeScript files
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.js", "*.jsx", "*.ts", "*.tsx", "*.vue" },
-  callback = function(args)
-    -- Use vim.lsp.buf.format with ESLint as the filter
-    vim.lsp.buf.format({
-      bufnr = args.buf,
-      filter = function(client)
-        return client.name == "eslint"
-      end,
-      timeout_ms = 2000,
-    })
-  end,
-  desc = "Run ESLint autofix before save"
-})

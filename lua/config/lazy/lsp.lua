@@ -37,6 +37,7 @@ return {
     require("mason-tool-installer").setup({
       ensure_installed = {
         "prettier",
+        "eslint_d",  -- Fast ESLint daemon for formatting
         "black",
         "ruff",
       },
