@@ -3,7 +3,7 @@ return {
   -- Not lazy loading because vim-airline's tmuxline extension needs it at startup
   config = function()
     vim.g.tmuxline_powerline_separators = 0
-    vim.g.tmuxline_prese = {
+    vim.g.tmuxline_preset = {
       a = '#S',
       win = '#I #W #{s|$HOME||;s|/.*/||:pane_current_path}',
       cwin = '#I #W #{s|$HOME||;s|/.*/||:pane_current_path}',
