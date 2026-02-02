@@ -13,7 +13,8 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 -- Line wrapping
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.linebreak = true
 
 -- Backup and undo
 vim.opt.swapfile = false
