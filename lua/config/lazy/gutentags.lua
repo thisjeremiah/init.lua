@@ -12,7 +12,7 @@ return {
       vim.g.gutentags_generate_on_new = 1
       vim.g.gutentags_generate_on_write = 1
       vim.g.gutentags_background_update = 1
-      vim.g.gutentags_exclude = {
+      vim.g.gutentags_ctags_exclude = {
         "node_modules",
         "vendor",
         "dist",

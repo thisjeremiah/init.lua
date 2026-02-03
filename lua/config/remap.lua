@@ -44,6 +44,41 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
+-- Yank with file path (for Claude Code context)
+local function yank_with_path(use_absolute)
+  local start_line = vim.fn.line("'<")
+  local end_line = vim.fn.line("'>")
+  local filepath = use_absolute and vim.fn.expand("%:p") or vim.fn.expand("%:.")
+
+  -- Get selected lines
+  local lines = vim.fn.getline(start_line, end_line)
+  if type(lines) == "string" then
+    lines = { lines }
+  end
+
+  -- Build path header
+  local path_header
+  if start_line == end_line then
+    path_header = filepath .. ":" .. start_line
+  else
+    path_header = filepath .. ":" .. start_line .. "-" .. end_line
+  end
+
+  -- Combine path and code
+  local content = path_header .. "\n" .. table.concat(lines, "\n")
+
+  -- Copy to system clipboard
+  vim.fn.setreg("+", content)
+
+  -- Exit visual mode (like regular y)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+
+  vim.notify("Yanked with " .. (use_absolute and "absolute" or "relative") .. " path", vim.log.levels.INFO)
+end
+
+vim.keymap.set("v", "yr", function() yank_with_path(false) end, { desc = "Yank with relative path" })
+vim.keymap.set("v", "ya", function() yank_with_path(true) end, { desc = "Yank with absolute path" })
+
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
