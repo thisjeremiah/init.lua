@@ -20,6 +20,19 @@ return {
           '--smart-case',
           -- Add --hidden to search hidden files (but still respect .gitignore)
           '--hidden',
+          -- Explicitly ignore heavy/derived dirs
+          '--glob',
+          '!node_modules/**',
+          '--glob',
+          '!.next/**',
+          '--glob',
+          '!dist/**',
+          '--glob',
+          '!build/**',
+          '--glob',
+          '!vendor/**',
+          '--glob',
+          '!.git/**',
         },
       },
       pickers = {
@@ -45,6 +58,18 @@ return {
         '--smart-case',
         '--hidden',
         '--fixed-strings', -- Add fixed strings for literal search
+        '--glob',
+        '!node_modules/**',
+        '--glob',
+        '!.next/**',
+        '--glob',
+        '!dist/**',
+        '--glob',
+        '!build/**',
+        '--glob',
+        '!vendor/**',
+        '--glob',
+        '!.git/**',
       }
       builtin.live_grep({
         vimgrep_arguments = vimgrep_arguments,
@@ -72,6 +97,18 @@ return {
         '--smart-case',
         '--hidden',
         '--fixed-strings',
+        '--glob',
+        '!node_modules/**',
+        '--glob',
+        '!.next/**',
+        '--glob',
+        '!dist/**',
+        '--glob',
+        '!build/**',
+        '--glob',
+        '!vendor/**',
+        '--glob',
+        '!.git/**',
       }
       builtin.live_grep({
         default_text = opts.args,
