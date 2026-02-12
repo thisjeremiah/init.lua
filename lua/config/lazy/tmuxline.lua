@@ -2,6 +2,8 @@ return {
   "edkolev/tmuxline.vim",
   -- Not lazy loading because vim-airline's tmuxline extension needs it at startup
   config = function()
+    -- Don't auto-apply to tmux; only used for :TmuxlineSnapshot
+    vim.g['airline#extensions#tmuxline#enabled'] = 0
     vim.g.tmuxline_powerline_separators = 0
     vim.g.tmuxline_preset = {
       a = '#S',
