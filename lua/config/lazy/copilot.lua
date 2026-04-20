@@ -4,6 +4,10 @@ return {
   event = "InsertEnter",
   config = function()
     require("copilot").setup({
+      root_dir = function()
+        local top = vim.fn.systemlist({ "git", "-C", vim.uv.cwd(), "rev-parse", "--show-toplevel" })[1]
+        return (vim.v.shell_error == 0 and top) or vim.uv.cwd()
+      end,
       panel = {
         enabled = true,
         auto_refresh = false,
