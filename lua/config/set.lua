@@ -42,7 +42,7 @@ vim.opt.sidescrolloff = 0
 
 -- Timing
 vim.opt.updatetime = 50
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 0
 
 -- System integration

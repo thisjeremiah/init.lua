@@ -44,38 +44,6 @@ return {
 
     local builtin = require('telescope.builtin')
 
-    -- Old config FZF-style keymaps (prioritized)
-    -- Make <leader>a use literal search by default (no regex, handles $, #{}, etc.)
-    vim.keymap.set('n', '<leader>a', function()
-      -- Build custom vimgrep arguments with fixed-strings flag
-      local vimgrep_arguments = {
-        'rg',
-        '--color=never',
-        '--no-heading',
-        '--with-filename',
-        '--line-number',
-        '--column',
-        '--smart-case',
-        '--hidden',
-        '--fixed-strings', -- Add fixed strings for literal search
-        '--glob',
-        '!node_modules/**',
-        '--glob',
-        '!.next/**',
-        '--glob',
-        '!dist/**',
-        '--glob',
-        '!build/**',
-        '--glob',
-        '!vendor/**',
-        '--glob',
-        '!.git/**',
-      }
-      builtin.live_grep({
-        vimgrep_arguments = vimgrep_arguments,
-        prompt_title = "Grep",
-      })
-    end, { desc = "Search in files (Literal)" })
     vim.keymap.set('n', '<leader>b', function()
       builtin.buffers({
         sort_mru = true,
@@ -83,7 +51,6 @@ return {
         ignore_current_buffer = true
       })
     end, { desc = "List buffers (MRU)" })
-    vim.keymap.set('n', '<leader>o', builtin.find_files, { desc = "Find files" })
 
     -- Create :Ag command for old workflow (now literal by default)
     vim.api.nvim_create_user_command('Ag', function(opts)
@@ -122,9 +89,6 @@ return {
     end, { nargs = '*', desc = "Live grep with regex patterns" })
 
 
-    -- New config keymaps
-    vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-    vim.keymap.set('n', '<C-p>', builtin.git_files, {})
     vim.keymap.set('n', '<leader>pws', function()
       local word = vim.fn.expand("<cword>")
       builtin.grep_string({ search = word })
