@@ -16,6 +16,22 @@ return {
       return ok and result or ""
     end
     require("fff").setup(opts)
+
+    -- fff.nvim has no VimLeave* cleanup, so its Rust worker threads and
+    -- libuv handles are still alive when nvim tries to exit. nvim then
+    -- spins in loop_close/uv_walk forever waiting for them to close.
+    vim.api.nvim_create_autocmd("VimLeavePre", {
+      group = vim.api.nvim_create_augroup("fff_shutdown", { clear = true }),
+      callback = function()
+        local ok, fuzzy = pcall(require, "fff.fuzzy")
+        if not ok then return end
+        pcall(fuzzy.cancel_scan)
+        pcall(fuzzy.stop_background_monitor)
+        pcall(fuzzy.cleanup_file_picker)
+        pcall(fuzzy.destroy_frecency_db)
+        pcall(fuzzy.destroy_query_db)
+      end,
+    })
   end,
   keys = {
     {
